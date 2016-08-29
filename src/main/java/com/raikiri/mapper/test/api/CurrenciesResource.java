@@ -5,8 +5,9 @@ import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.raikiri.mapper.test.dao.CurrenciesRepository;
@@ -23,13 +24,14 @@ public class CurrenciesResource {
     @Autowired
     private ModelMapper modelMapper;
 
-    @RequestMapping(method = RequestMethod.GET)
-    public Collection<ListItemDTO> currenciesList() {
-        return currenciesRepo.findAll().stream().map(cur -> modelMapper.map(cur, ListItemDTO.class))
+    @GetMapping
+	public Collection<ListItemDTO> currenciesList(
+			@RequestParam(name = "disabled", required = false, defaultValue = "false") Boolean disabled) {
+        return currenciesRepo.findByDisabled(disabled).stream().map(cur -> modelMapper.map(cur, ListItemDTO.class))
                 .collect(Collectors.toList());
     }
 
-    @RequestMapping(path = "/details", method = RequestMethod.GET)
+    @GetMapping(path = "/details")
     public Collection<CurrencyDTO> currenciesWithDetails() {
         return currenciesRepo.findAll().stream().map(cur -> modelMapper.map(cur, CurrencyDTO.class))
                 .collect(Collectors.toList());
