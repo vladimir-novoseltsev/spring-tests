@@ -11,4 +11,6 @@ public interface CurrenciesRepository extends CrudRepository<Currency, Long>{
 	
 	@Override
 	List<Currency> findAll();
+	
+	List<Currency> findByDisabled(Boolean disabled);
 }
