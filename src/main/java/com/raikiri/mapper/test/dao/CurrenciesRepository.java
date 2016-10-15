@@ -6,11 +6,11 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.raikiri.mapper.test.model.dictionary.Currency;
 
-public interface CurrenciesRepository extends CrudRepository<Currency, Long>{
+public interface CurrenciesRepository extends CrudRepository<Currency, Long> {
 	Currency getByCode(String code);
-	
+
 	@Override
 	List<Currency> findAll();
-	
+
 	List<Currency> findByDisabled(Boolean disabled);
 }

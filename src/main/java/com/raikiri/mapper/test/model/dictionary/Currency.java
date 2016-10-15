@@ -7,14 +7,14 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "currency")
 public class Currency extends DetailDictionary {
-    @Column(name = "decimal_digits", nullable = false)
-    private int decimalDigits = 0;
+	@Column(name = "decimal_digits", nullable = false)
+	private int decimalDigits = 0;
 
-    @Column(name="uid", length = 20)
-    private String uid;
+	@Column(name = "uid", length = 20)
+	private String uid;
 
-    @Column(name = "sort_order", nullable = false)
-    private int sortOrder = 6;
+	@Column(name = "sort_order", nullable = false)
+	private int sortOrder = 6;
 
 	public int getDecimalDigits() {
 		return decimalDigits;

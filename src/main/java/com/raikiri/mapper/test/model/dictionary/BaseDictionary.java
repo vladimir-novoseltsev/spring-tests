@@ -8,10 +8,10 @@ import com.raikiri.mapper.test.model.AbstractEntity;
 @MappedSuperclass
 public class BaseDictionary extends AbstractEntity {
 	public final static int MAX_CODE_LEN = 255;
-	
+
 	@Column(name = "code", nullable = false, length = MAX_CODE_LEN, unique = true)
 	private String code;
-	
+
 	@Column(name = "is_disabled", nullable = false)
 	private boolean disabled;
 

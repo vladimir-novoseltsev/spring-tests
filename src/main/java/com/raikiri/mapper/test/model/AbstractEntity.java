@@ -11,10 +11,10 @@ import javax.persistence.Version;
 public class AbstractEntity extends BaseAbstractEntity {
 
 	@Id
-	@Column(name = "id", nullable  = false)
+	@Column(name = "id", nullable = false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@Version
 	@Column(name = "version")
 	private Long version;

@@ -18,22 +18,22 @@ import com.raikiri.mapper.test.dto.ListItemDTO;
 @RequestMapping("/api/currencies")
 public class CurrenciesResource {
 
-    @Autowired
-    private CurrenciesRepository currenciesRepo;
+	@Autowired
+	private CurrenciesRepository currenciesRepo;
 
-    @Autowired
-    private ModelMapper modelMapper;
+	@Autowired
+	private ModelMapper modelMapper;
 
-    @GetMapping
+	@GetMapping
 	public Collection<ListItemDTO> currenciesList(
 			@RequestParam(name = "disabled", required = false, defaultValue = "false") Boolean disabled) {
-        return currenciesRepo.findByDisabled(disabled).stream().map(cur -> modelMapper.map(cur, ListItemDTO.class))
-                .collect(Collectors.toList());
-    }
+		return currenciesRepo.findByDisabled(disabled).stream().map(cur -> modelMapper.map(cur, ListItemDTO.class))
+				.collect(Collectors.toList());
+	}
 
-    @GetMapping(path = "/details")
-    public Collection<CurrencyDTO> currenciesWithDetails() {
-        return currenciesRepo.findAll().stream().map(cur -> modelMapper.map(cur, CurrencyDTO.class))
-                .collect(Collectors.toList());
-    }
+	@GetMapping(path = "/details")
+	public Collection<CurrencyDTO> currenciesWithDetails() {
+		return currenciesRepo.findAll().stream().map(cur -> modelMapper.map(cur, CurrencyDTO.class))
+				.collect(Collectors.toList());
+	}
 }
